@@ -1,5 +1,6 @@
 package com.example.prabhendu.connectme;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.Button;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -62,5 +64,10 @@ public class MainActivity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }
+    }
+    public void firstScreen(View view) {
+        //Intent intent = new Intent(this, FirstScreen.class);
+        Intent intent = new Intent(this,FirstScreen.class);
+        startActivity(intent);
     }
 }

@@ -17,6 +17,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".FirstScreen"
+            android:label="@string/title_activity_first_screen"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.prabhendu.connectme.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".SecondScreen"
+            android:label=".second_screen"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.prabhendu.connectme.FirstScreen" />
+        </activity>
+
     </application>
 
 </manifest>

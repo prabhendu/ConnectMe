@@ -46,6 +46,6 @@
         android:layout_below="@+id/password"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
-        android:onClick="first_screen.xml"
+        android:onClick="firstScreen"
         android:layout_marginTop="40dp" />
 </RelativeLayout>
