@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:text="View Business Profile"
         android:id="@+id/button"
-        android:layout_below="@+id/editText"
+        android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/editText"
         android:layout_alignStart="@+id/editText" />
 
@@ -43,7 +43,6 @@
         android:layout_below="@+id/button"
         android:layout_alignLeft="@+id/button"
         android:layout_alignStart="@+id/button"
-        android:layout_marginTop="80dp"
         android:layout_alignRight="@+id/button"
         android:layout_alignEnd="@+id/button" />
 
