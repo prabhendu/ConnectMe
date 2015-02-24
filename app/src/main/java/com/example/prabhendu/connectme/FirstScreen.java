@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 
 public class FirstScreen extends ActionBarActivity {
@@ -41,6 +42,10 @@ public class FirstScreen extends ActionBarActivity {
 
     public void resumeSubmit (View view) {
         Intent intent = new Intent(this,SecondScreen.class);
+
+        EditText editText1 = (EditText) findViewById(R.id.editText);
+        String str = editText1.getText().toString();
+        intent.putExtra("firstTag",str);
         startActivity(intent);
     }
 }

@@ -1,9 +1,11 @@
 package com.example.prabhendu.connectme;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class SecondScreen extends ActionBarActivity {
@@ -12,6 +14,10 @@ public class SecondScreen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_screen);
+        Intent intent = getIntent();
+        String str = intent.getStringExtra("firstTag");
+        TextView mText = (TextView) findViewById(R.id.editName);
+        mText.setText(str);
     }
 
 

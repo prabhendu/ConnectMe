@@ -28,8 +28,8 @@
 
         <activity
             android:name=".SecondScreen"
-            android:label=".second_screen"
-            android:parentActivityName=".MainActivity" >
+            android:label="second_screen"
+            android:parentActivityName=".FirstScreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.prabhendu.connectme.FirstScreen" />
