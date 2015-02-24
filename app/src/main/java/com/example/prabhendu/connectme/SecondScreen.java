@@ -5,7 +5,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class SecondScreen extends ActionBarActivity {
@@ -18,6 +23,17 @@ public class SecondScreen extends ActionBarActivity {
         String str = intent.getStringExtra("firstTag");
         TextView mText = (TextView) findViewById(R.id.editName);
         mText.setText(str);
+
+        String[] resumeArray = {
+                "Resume_Software_Engineer",
+                "Resume_Security_Analyst",
+                "Resume_IT_technical",
+        };
+
+        ListView lv = (ListView)findViewById(R.id.listView);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.second_screen,resumeArray);
+        lv.setAdapter(adapter);
     }
 
 
