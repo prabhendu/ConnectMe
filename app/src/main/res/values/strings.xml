@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">ConnectMe</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -9,4 +10,6 @@
     <string name="password">Password</string>
     <string name="submit_button">Submit</string>
     <string name="signUp_button">Sign Up</string>
+    <string name="title_activity_third_screen">third_screen</string>
+
 </resources>

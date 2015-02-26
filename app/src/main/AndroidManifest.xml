@@ -25,7 +25,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.prabhendu.connectme.MainActivity" />
         </activity>
-
         <activity
             android:name=".SecondScreen"
             android:label="second_screen"
@@ -34,7 +33,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.prabhendu.connectme.FirstScreen" />
         </activity>
+        <activity
+            android:name=".ThirdScreen"
+            android:label="@string/title_activity_third_screen"
+            android:parentActivityName=".SecondScreen">
 
+        </activity>
     </application>
 
 </manifest>

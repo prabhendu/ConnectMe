@@ -79,13 +79,13 @@ public class MainActivity extends ActionBarActivity {
 //        String userName1 = userName.getText().toString();
 //        String password1 = passWord.getText().toString();
 
-        if(userName.getText().toString().equals("prabhendu") && passWord.getText().toString().equals("prabhendu")) {
+//        if(userName.getText().toString().equals("prabhendu") && passWord.getText().toString().equals("prabhendu")) {
             startActivity(intent);
-        } else {
-            userName.setText("");
-            passWord.setText("");
-            new AlertDialog.Builder(this).setTitle("Wrong Username or Password");
-        }
+//        } else {
+//            userName.setText("");
+//            passWord.setText("");
+//            new AlertDialog.Builder(this).setTitle("Wrong Username or Password");
+//        }
 
 
     }
