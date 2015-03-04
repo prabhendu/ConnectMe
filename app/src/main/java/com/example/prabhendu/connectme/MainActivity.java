@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,11 +14,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import org.brickred.socialauth.android.SocialAuthAdapter;
+import org.brickred.socialauth.Profile;
+import org.brickred.socialauth.android.DialogListener;
+import org.brickred.socialauth.android.SocialAuthError;
+
+import org.brickred.socialauth.android.SocialAuthAdapter.Provider;
+import org.w3c.dom.Text;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -32,6 +41,23 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    private final class ResponseListener implements DialogListener {
+        public void onComplete(Bundle values) {
+            //System.out.println("Logged In!");
+            Log.i("Logged In", "logged in");
+        }
+
+        public void onCancel() {
+        }
+
+        public void onBack() {
+
+        }
+
+        public void onError(SocialAuthError err) {
+            Log.i("Log Error", "logged in");
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -70,23 +96,21 @@ public class MainActivity extends ActionBarActivity {
             return rootView;
         }
     }
+
     public void firstScreen(View view) {
         //Intent intent = new Intent(this, FirstScreen.class);
         Intent intent = new Intent(this,FirstScreen.class);
         //Checking for username and password
-        TextView userName = (TextView)findViewById(R.id.loginUsername);
-        TextView passWord = (TextView)findViewById(R.id.loginPassword);
-//        String userName1 = userName.getText().toString();
-//        String password1 = passWord.getText().toString();
 
-//        if(userName.getText().toString().equals("prabhendu") && passWord.getText().toString().equals("prabhendu")) {
-            startActivity(intent);
-//        } else {
-//            userName.setText("");
-//            passWord.setText("");
-//            new AlertDialog.Builder(this).setTitle("Wrong Username or Password");
-//        }
-
+        ImageButton loginButton = (ImageButton) findViewById(R.id.loginButton);
+        final SocialAuthAdapter adapter = new SocialAuthAdapter(new ResponseListener());
+        adapter.addProvider(Provider.LINKEDIN, R.drawable.linkedin);
+        adapter.enable(loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                adapter.authorize(MainActivity.this, Provider.LINKEDIN);
+            }
+        });
 
     }
 }
