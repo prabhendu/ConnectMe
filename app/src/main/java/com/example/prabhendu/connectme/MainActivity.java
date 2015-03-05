@@ -17,9 +17,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import org.w3c.dom.Text;
-
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import org.brickred.socialauth.android.SocialAuthAdapter;
 import org.brickred.socialauth.Profile;
 import org.brickred.socialauth.android.DialogListener;
@@ -34,15 +36,11 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /*if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }*/
+
         final SocialAuthAdapter adapter = new SocialAuthAdapter(new ResponseListener());
         ImageButton loginButton = (ImageButton) findViewById(R.id.loginButton);
-        //adapter.addProvider(Provider.LINKEDIN, R.drawable.linkedin);
-        //adapter.enable(loginButton);
+
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 adapter.authorize(MainActivity.this, Provider.LINKEDIN);
@@ -50,22 +48,23 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
+    // To receive the response after authentication
     private final class ResponseListener implements DialogListener {
         public void onComplete(Bundle values) {
-            //System.out.println("Logged In!");
-            Log.i("Logged In", "logged in");
-        }
 
-        public void onCancel() {
-        }
+                    Log.i("Logged In", "logged in");
+            }
 
-        public void onBack() {
+                        public void onCancel() {
+                   }
 
-        }
+                     public void onBack() {
 
-        public void onError(SocialAuthError err) {
-            Log.i("Log Error", "logged in");
-        }
+                           }
+
+                        public void onError(SocialAuthError err) {
+                        Log.i("Log Error", "logged in");
+                   }
     }
 
     @Override
@@ -90,30 +89,5 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    /*public static class PlaceholderFragment extends Fragment {
 
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
-        }
-    }
-
-    public void firstScreen(View view) {
-        //Intent intent = new Intent(this, FirstScreen.class);
-        Intent intent = new Intent(this,FirstScreen.class);
-        //Checking for username and password
-
-
-
-
-
-    }*/
 }
