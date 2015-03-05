@@ -34,11 +34,20 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
+        /*if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
-        }
+        }*/
+        final SocialAuthAdapter adapter = new SocialAuthAdapter(new ResponseListener());
+        ImageButton loginButton = (ImageButton) findViewById(R.id.loginButton);
+        //adapter.addProvider(Provider.LINKEDIN, R.drawable.linkedin);
+        //adapter.enable(loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                adapter.authorize(MainActivity.this, Provider.LINKEDIN);
+            }
+        });
     }
 
     private final class ResponseListener implements DialogListener {
@@ -84,7 +93,7 @@ public class MainActivity extends ActionBarActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+    /*public static class PlaceholderFragment extends Fragment {
 
         public PlaceholderFragment() {
         }
@@ -102,15 +111,9 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(this,FirstScreen.class);
         //Checking for username and password
 
-        ImageButton loginButton = (ImageButton) findViewById(R.id.loginButton);
-        final SocialAuthAdapter adapter = new SocialAuthAdapter(new ResponseListener());
-        adapter.addProvider(Provider.LINKEDIN, R.drawable.linkedin);
-        adapter.enable(loginButton);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                adapter.authorize(MainActivity.this, Provider.LINKEDIN);
-            }
-        });
 
-    }
+
+
+
+    }*/
 }
