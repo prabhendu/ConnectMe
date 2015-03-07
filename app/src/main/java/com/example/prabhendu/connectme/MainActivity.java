@@ -28,16 +28,19 @@ import org.brickred.socialauth.android.DialogListener;
 import org.brickred.socialauth.android.SocialAuthError;
 
 import org.brickred.socialauth.android.SocialAuthAdapter.Provider;
+import org.brickred.socialauth.SocialAuthManager;
 import org.w3c.dom.Text;
 
 public class MainActivity extends ActionBarActivity {
+
+    SocialAuthAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final SocialAuthAdapter adapter = new SocialAuthAdapter(new ResponseListener());
+        adapter = new SocialAuthAdapter(new ResponseListener());
         ImageButton loginButton = (ImageButton) findViewById(R.id.loginButton);
 
 
@@ -51,20 +54,22 @@ public class MainActivity extends ActionBarActivity {
     // To receive the response after authentication
     private final class ResponseListener implements DialogListener {
         public void onComplete(Bundle values) {
+            Log.i("Logged In", "logged in");
 
-                    Log.i("Logged In", "logged in");
+            Intent loggedIn = new Intent(MainActivity.this, FirstScreen.class);
+            startActivity(loggedIn);
             }
 
-                        public void onCancel() {
-                   }
+        public void onCancel() {
+        }
 
-                     public void onBack() {
+        public void onBack() {
 
-                           }
+        }
 
-                        public void onError(SocialAuthError err) {
-                        Log.i("Log Error", "logged in");
-                   }
+        public void onError(SocialAuthError err) {
+            Log.i("Log Error", "AuthError");
+        }
     }
 
     @Override
@@ -89,5 +94,9 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    @Override
+    protected void onStop(){
+        adapter.signOut(MainActivity.this, Provider.LINKEDIN.toString());
+        super.onStop();
+    }
 }
