@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View Business Profile"
-        android:id="@+id/button"
+        android:id="@+id/loginButton"
         android:layout_below="@+id/editText"
         android:layout_alignLeft="@+id/editText"
         android:layout_centerVertical="true"
@@ -45,9 +45,9 @@
         android:text="SUBMIT RESUME"
         android:id="@+id/button2"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button" />
+        android:layout_alignLeft="@+id/loginButton"
+        android:layout_alignStart="@+id/loginButton"
+        android:layout_alignRight="@+id/loginButton"
+        android:layout_alignEnd="@+id/loginButton" />
 
 </RelativeLayout>
