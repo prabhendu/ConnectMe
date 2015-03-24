@@ -12,5 +12,6 @@
     <string name="signUp_button">Sign Up</string>
     <string name="title_activity_third_screen">third_screen</string>
     <string name="login_button">login_button</string>
+    <string name="title_activity_self_profile">SelfProfile</string>
 
 </resources>

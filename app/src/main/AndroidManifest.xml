@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.prabhendu.connectme" >
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -39,8 +39,12 @@
         <activity
             android:name=".ThirdScreen"
             android:label="@string/title_activity_third_screen"
-            android:parentActivityName=".SecondScreen">
-
+            android:parentActivityName=".SecondScreen" >
+        </activity>
+        <activity
+            android:name=".SelfProfile"
+            android:label="@string/title_activity_self_profile"
+            android:parentActivityName=".FirstScreen">
         </activity>
     </application>
 

@@ -48,4 +48,10 @@ public class FirstScreen extends ActionBarActivity {
         intent.putExtra("firstTag",str);
         startActivity(intent);
     }
+
+    public void selfProfile (View view) {
+        Intent intent = new Intent(this,SelfProfile.class);
+        startActivity(intent);
+    }
+
 }

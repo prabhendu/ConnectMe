@@ -69,6 +69,9 @@ public class MainActivity extends ActionBarActivity {
 
         public void onError(SocialAuthError err) {
             Log.i("Log Error", "AuthError");
+            //Temporary
+            //Intent loggedIn = new Intent(MainActivity.this, FirstScreen.class);
+            //startActivity(loggedIn);
         }
     }
 
