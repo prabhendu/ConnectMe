@@ -54,4 +54,9 @@ public class FirstScreen extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void searchCompanies(View view) {
+        Intent intent = new Intent(this, SearchCompanies.class);
+        startActivity(intent);
+    }
+
 }

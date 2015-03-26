@@ -46,6 +46,11 @@
             android:label="@string/title_activity_self_profile"
             android:parentActivityName=".FirstScreen">
         </activity>
+        <activity
+            android:name=".SearchCompanies"
+            android:label="SearchCompanies"
+            android:parentActivityName=".FirstScreen">
+        </activity>
     </application>
 
 </manifest>

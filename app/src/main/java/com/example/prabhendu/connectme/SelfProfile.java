@@ -23,7 +23,7 @@ public class SelfProfile extends ActionBarActivity {
         name.setText("Prabhendu Pandey");
 
         TextView phone = (TextView) findViewById(R.id.editText3);
-        phone.setText("404-472-6739");
+        phone.setText("555-678-1234");
 
         TextView email = (TextView) findViewById(R.id.editText4);
         email.setText("prabhendu@gmail.com");
