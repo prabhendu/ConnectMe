@@ -6,7 +6,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
 import org.apache.http.HttpEntity;
@@ -33,6 +37,9 @@ public class SearchCompanies extends ActionBarActivity {
 
     TextView header2;
     EditText editable;
+    String json;
+    ArrayList<String> companiesArrayList;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +49,13 @@ public class SearchCompanies extends ActionBarActivity {
         header2 = (TextView) findViewById(R.id.textView2);
         editable = (EditText) findViewById(R.id.editName);
 
-        new HttpAsyncTask().execute("http://127.0.0.1:18081/api/companies/");
+        new HttpAsyncTask().execute("http://128.61.104.114:18081/api/companies");
+        companiesArrayList = new ArrayList<String>();
+        companiesArrayList.add("Loading companies");
+
+        ListView lv = (ListView)findViewById(R.id.listView);
+        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, this.companiesArrayList);
+        lv.setAdapter(adapter);
 
     }
 
@@ -69,6 +82,34 @@ public class SearchCompanies extends ActionBarActivity {
         return result;
     }
 
+    public void refresh(View view) {
+        new HttpAsyncTask().execute("http://128.61.104.114:18081/api/companies");
+
+        if(json != null) {
+            Log.i("REFRESH", "REFRESH CALLED");
+            try {
+
+                JSONArray jsonArray = new JSONArray(json);
+                Log.i("ARRAY INFO", "Length: " + jsonArray.length());
+                this.companiesArrayList.clear();
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+
+                    String companyName = obj.getString("name");
+                    Log.i("COMPANY NAME: ", companyName);
+                   this.companiesArrayList.add(companyName);
+
+                }
+
+            } catch (JSONException e) {
+                //whoops
+            }
+        }
+
+        adapter.notifyDataSetChanged();
+    }
+
     private static String convertInputStreamToString(InputStream inputStream) throws IOException {
         BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
         String line = "";
@@ -93,8 +134,9 @@ public class SearchCompanies extends ActionBarActivity {
         protected void onPostExecute(String result) {
             Log.w("SERVER SENT: ", result);
             Log.v("RESPONSE", result);
-            header2.setText(result);
-            editable.setText(result);
+            //header2.setText(result);
+            //editable.setText(result);
+            json = result;
         }
 
     }
