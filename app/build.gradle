@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         mavenCentral() // or jcenter()
+
     }
 
     dependencies {
@@ -16,7 +17,7 @@ android {
     buildToolsVersion "21.1.2"
     defaultConfig {
         applicationId "com.example.prabhendu.connectme"
-        minSdkVersion 10
+        minSdkVersion 14
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
@@ -36,8 +37,10 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:+'
+    compile 'com.android.support:appcompat-v7:22.0.0'
     compile files('libs/socialauth-4.4.jar')
     compile files('libs/socialauth-android-3.2.jar')
     compile 'com.github.navasmdc:MaterialDesign:1.+@aar'
-}
+    compile 'com.github.developerpaul123.filepickerlibrary:library:1.0@aar'
+
+    }

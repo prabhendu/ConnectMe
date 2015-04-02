@@ -7,8 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.devpaul.filepickerlibrary.FilePickerActivity;
+import com.devpaul.filepickerlibrary.enums.FileScopeType;
+import com.devpaul.filepickerlibrary.enums.FileType;
+import com.devpaul.filepickerlibrary.enums.ThemeType;
 
 
 public class SelfProfile extends ActionBarActivity {
@@ -31,6 +37,18 @@ public class SelfProfile extends ActionBarActivity {
         email.setHint("example@email.com");
 
         TextView title = (TextView) findViewById(R.id.editText5);
+
+        android.widget.Button newResume = (Button) findViewById(R.id.newResumeButton);
+
+        newResume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent filePickerIntent = new Intent(SelfProfile.this, FilePickerActivity.class);
+                filePickerIntent.putExtra(FilePickerActivity.REQUEST_CODE, FilePickerActivity.REQUEST_DIRECTORY);
+                startActivityForResult(filePickerIntent, FilePickerActivity.REQUEST_DIRECTORY);
+            }
+        });
+
         title.setHint("Title");
 
         String[] resumeArray = {
@@ -72,4 +90,6 @@ public class SelfProfile extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
