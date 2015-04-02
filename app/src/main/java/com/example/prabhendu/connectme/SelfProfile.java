@@ -1,9 +1,11 @@
 package com.example.prabhendu.connectme;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -44,6 +46,10 @@ public class SelfProfile extends ActionBarActivity {
 
     }
 
+    public void selfProfile (View view) {
+        Intent intent = new Intent(this,SelfProfile.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

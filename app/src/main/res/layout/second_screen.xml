@@ -29,7 +29,7 @@
 
         <TextView
             android:id="@+id/header3"
-            android:text="MY PROFILE"
+            android:text="PROFILE"
             android:layout_weight="1"
             android:background="@drawable/rectangle"
             android:textColor="#000000"

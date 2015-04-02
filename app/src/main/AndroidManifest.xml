@@ -23,10 +23,10 @@
         <activity
             android:name=".FirstScreen"
             android:label="@string/title_activity_first_screen"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".roledivider" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.prabhendu.connectme.MainActivity" />
+                android:value="com.example.prabhendu.connectme.roledivider" />
         </activity>
         <activity
             android:name=".SecondScreen"
@@ -44,12 +44,36 @@
         <activity
             android:name=".SelfProfile"
             android:label="@string/title_activity_self_profile"
-            android:parentActivityName=".FirstScreen">
+            android:parentActivityName=".FirstScreen" >
         </activity>
         <activity
             android:name=".SearchCompanies"
             android:label="SearchCompanies"
-            android:parentActivityName=".FirstScreen">
+            android:parentActivityName=".FirstScreen" >
+        </activity>
+        <activity
+            android:name=".roledivider"
+            android:label="@string/title_activity_roledivider"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.prabhendu.connectme.MainActivity" />
+        </activity>
+        <activity
+            android:name=".RecruiterTagScreen"
+            android:label="@string/title_activity_recruiter_first_screen"
+            android:parentActivityName=".roledivider" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.prabhendu.connectme.roledivider" />
+        </activity>
+        <activity
+            android:name=".RecruiterResumeScreen"
+            android:label="@string/title_activity_recruiter_resume_screen"
+            android:parentActivityName=".RecruiterTagScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.prabhendu.connectme.RecruiterTagScreen" />
         </activity>
     </application>
 

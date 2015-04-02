@@ -13,5 +13,8 @@
     <string name="title_activity_third_screen">third_screen</string>
     <string name="login_button">login_button</string>
     <string name="title_activity_self_profile">SelfProfile</string>
+    <string name="title_activity_roledivider">roledivider</string>
+    <string name="title_activity_recruiter_first_screen">RecruiterFirstScreen</string>
+    <string name="title_activity_recruiter_resume_screen">RecruiterResumeScreen</string>
 
 </resources>

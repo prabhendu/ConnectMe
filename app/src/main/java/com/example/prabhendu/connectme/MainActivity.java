@@ -1,35 +1,18 @@
 package com.example.prabhendu.connectme;
 
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-import android.widget.Toast;
-import org.w3c.dom.Text;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.ProgressDialog;
-import org.brickred.socialauth.android.SocialAuthAdapter;
-import org.brickred.socialauth.Profile;
-import org.brickred.socialauth.android.DialogListener;
-import org.brickred.socialauth.android.SocialAuthError;
 
+import org.brickred.socialauth.android.DialogListener;
+import org.brickred.socialauth.android.SocialAuthAdapter;
 import org.brickred.socialauth.android.SocialAuthAdapter.Provider;
-import org.brickred.socialauth.SocialAuthManager;
-import org.w3c.dom.Text;
+import org.brickred.socialauth.android.SocialAuthError;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -56,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
         public void onComplete(Bundle values) {
             Log.i("Logged In", "logged in");
 
-            Intent loggedIn = new Intent(MainActivity.this, FirstScreen.class);
+            Intent loggedIn = new Intent(MainActivity.this, roledivider.class);
             startActivity(loggedIn);
             }
 
@@ -71,7 +54,8 @@ public class MainActivity extends ActionBarActivity {
             Log.i("Log Error", "AuthError");
             //Temporary
             //Intent loggedIn = new Intent(MainActivity.this, FirstScreen.class);
-            //startActivity(loggedIn);
+//            Intent loggedIn = new Intent(MainActivity.this, roledivider.class);
+//            startActivity(loggedIn);
         }
     }
 
