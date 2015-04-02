@@ -10,6 +10,7 @@ buildscript {
 
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
@@ -38,4 +39,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:+'
     compile files('libs/socialauth-4.4.jar')
     compile files('libs/socialauth-android-3.2.jar')
+    compile 'com.github.navasmdc:MaterialDesign:1.+@aar'
 }

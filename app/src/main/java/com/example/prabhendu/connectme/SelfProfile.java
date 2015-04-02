@@ -22,16 +22,16 @@ public class SelfProfile extends ActionBarActivity {
         //Email text is editText4
         //Title text is editText5
         TextView name = (TextView) findViewById(R.id.editText2);
-        name.setText("Prabhendu Pandey");
+        name.setHint("First Name");
 
         TextView phone = (TextView) findViewById(R.id.editText3);
-        phone.setText("555-678-1234");
+        phone.setHint("123-456-7890");
 
         TextView email = (TextView) findViewById(R.id.editText4);
-        email.setText("prabhendu@gmail.com");
+        email.setHint("example@email.com");
 
         TextView title = (TextView) findViewById(R.id.editText5);
-        title.setText("Graduate Student");
+        title.setHint("Title");
 
         String[] resumeArray = {
                 "Resume_Software_Engineer",
