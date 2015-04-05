@@ -1,0 +1,133 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.prabhendu.connectme.TagCreationScreen"
+    android:id="@+id/frameLayout">
+
+    <TextView
+        android:id="@+id/header"
+        android:text="Create a new tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/tagName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        android:inputType="text"
+        android:layout_below="@+id/header"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="20"
+        android:id="@+id/tagDescription"
+        android:layout_below="@+id/tagName"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/startDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start_date"
+        android:layout_below="@id/tagDescription"
+        android:onClick="showDatePickerDialog" />
+
+    <TextView
+        android:id="@+id/startDateValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:textSize="@dimen/abc_text_size_display_1_material"
+        android:layout_alignBottom="@+id/startDate"
+        android:layout_alignLeft="@+id/startTimeValue"
+        android:layout_alignStart="@+id/startTimeValue"
+        android:layout_alignRight="@+id/startTimeValue"
+        android:layout_alignEnd="@+id/startTimeValue" />
+
+    <Button
+        android:id="@+id/startTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start_time"
+        android:layout_below="@id/startDate"
+        android:onClick="showTimePickerDialog" />
+
+    <TextView
+        android:id="@+id/startTimeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="5"
+        android:textSize="@dimen/abc_text_size_display_1_material"
+        android:layout_below="@+id/startDate"
+        android:layout_alignRight="@+id/tagName"
+        android:layout_alignEnd="@+id/tagName" />
+
+    <Button
+        android:id="@+id/endDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="   end_date  "
+        android:onClick="endDatePickerDialog1"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/endTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="   end_time   "
+        android:onClick="endTimePickerDialog"
+        android:layout_below="@+id/endDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/endDateValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="5"
+        android:textSize="@dimen/abc_text_size_display_1_material"
+        android:layout_above="@+id/endTime"
+        android:layout_alignLeft="@+id/startTimeValue"
+        android:layout_alignStart="@+id/startTimeValue" />
+
+    <TextView
+        android:id="@+id/endTimeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="5"
+        android:textSize="@dimen/abc_text_size_display_1_material"
+        android:layout_below="@+id/endDateValue"
+        android:layout_alignLeft="@+id/endDateValue"
+        android:layout_alignStart="@+id/endDateValue" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/submit"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Switch"
+        android:id="@+id/switch1"
+        android:layout_below="@+id/endTime"
+        android:layout_alignBaseline="@+id/submit" />
+
+
+</RelativeLayout>

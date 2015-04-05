@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:text="ADD TAG"
         android:id="@+id/button3"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:onClick="createTag"/>
 
     <TextView
         android:id="@+id/textView1"

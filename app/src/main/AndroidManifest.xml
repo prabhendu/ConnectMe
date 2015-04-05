@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:debuggable="true"
@@ -72,6 +71,14 @@
         <activity
             android:name=".RecruiterResumeScreen"
             android:label="@string/title_activity_recruiter_resume_screen"
+            android:parentActivityName=".RecruiterTagScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.prabhendu.connectme.RecruiterTagScreen" />
+        </activity>
+        <activity
+            android:name=".TagCreationScreen"
+            android:label="@string/title_activity_tag_creation_screen"
             android:parentActivityName=".RecruiterTagScreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

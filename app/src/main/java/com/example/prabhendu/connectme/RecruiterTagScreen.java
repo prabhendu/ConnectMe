@@ -44,6 +44,11 @@ public class RecruiterTagScreen extends ActionBarActivity {
 
     }
 
+    public void createTag (View view) {
+        Intent intent = new Intent (this,TagCreationScreen.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
