@@ -40,6 +40,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile files('libs/socialauth-4.4.jar')
     compile files('libs/socialauth-android-3.2.jar')
+    //compile files('libs/android-support-v4.jar')
     compile 'com.github.navasmdc:MaterialDesign:1.+@aar'
     compile 'com.github.developerpaul123.filepickerlibrary:library:1.0@aar'
 

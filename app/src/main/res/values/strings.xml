@@ -17,5 +17,5 @@
     <string name="title_activity_recruiter_first_screen">RecruiterFirstScreen</string>
     <string name="title_activity_recruiter_resume_screen">RecruiterResumeScreen</string>
     <string name="title_activity_tag_creation_screen">TagCreationScreen</string>
-
+    <string name="title_upload_new_resume_screen">UploadNewResume</string>
 </resources>

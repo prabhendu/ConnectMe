@@ -8,7 +8,7 @@
 
     <application
         android:allowBackup="true"
-        android:debuggable="true"
+
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
@@ -84,6 +84,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.prabhendu.connectme.RecruiterTagScreen" />
         </activity>
+
+        <activity
+            android:name=".UploadResumePopup"
+            android:theme="@style/Dialog"
+            android:label="@string/title_upload_new_resume_screen"
+            android:parentActivityName=".SelfProfile" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.prabhendu.connectme.SelfProfile" />
+        </activity>
+
     </application>
 
 </manifest>
