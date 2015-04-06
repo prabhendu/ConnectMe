@@ -29,7 +29,7 @@
 
         android:layout_height="wrap_content"
 
-        android:src= "@drawable/linkedin"
+        android:src= "@drawable/linkedin1"
 
         android:contentDescription="@string/login_button"
 
