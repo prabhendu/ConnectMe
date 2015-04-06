@@ -1,0 +1,86 @@
+Index: settings.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- settings.gradle	(revision db8e28c17d6abaed3dac2e523fd79a38f638c8fd)
++++ settings.gradle	(revision )
+@@ -1,1 +1,1 @@
+-include ':app', ':MaterialDesign'
++include ':app', ':MaterialDesign', ':dropbox-chooser'
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision db8e28c17d6abaed3dac2e523fd79a38f638c8fd)
++++ .idea/gradle.xml	(revision )
+@@ -11,6 +11,7 @@
+             <option value="$PROJECT_DIR$" />
+             <option value="$PROJECT_DIR$/MaterialDesign" />
+             <option value="$PROJECT_DIR$/app" />
++            <option value="$PROJECT_DIR$/dropbox-chooser" />
+           </set>
+         </option>
+       </GradleProjectSettings>
+Index: app/app.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/app.iml	(revision db8e28c17d6abaed3dac2e523fd79a38f638c8fd)
++++ app/app.iml	(revision )
+@@ -87,12 +87,12 @@
+     <orderEntry type="sourceFolder" forTests="false" />
+     <orderEntry type="library" exported="" name="appcompat-v7-22.0.0" level="project" />
+     <orderEntry type="library" exported="" name="socialauth-4.4" level="project" />
+-    <orderEntry type="library" exported="" name="android-support-v4" level="project" />
+     <orderEntry type="library" exported="" name="library-1.0" level="project" />
+     <orderEntry type="library" exported="" name="support-v4-22.0.0" level="project" />
+     <orderEntry type="library" exported="" name="socialauth-android-3.2" level="project" />
+     <orderEntry type="library" exported="" name="MaterialDesign-1.4" level="project" />
+     <orderEntry type="library" exported="" name="support-annotations-22.0.0" level="project" />
++    <orderEntry type="module" module-name="dropbox-chooser" exported="" />
+   </component>
+ </module>
+ 
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(revision db8e28c17d6abaed3dac2e523fd79a38f638c8fd)
++++ .idea/modules.xml	(revision )
+@@ -5,6 +5,7 @@
+       <module fileurl="file://$PROJECT_DIR$/ConnectMe.iml" filepath="$PROJECT_DIR$/ConnectMe.iml" />
+       <module fileurl="file://$PROJECT_DIR$/MaterialDesign/MaterialDesign.iml" filepath="$PROJECT_DIR$/MaterialDesign/MaterialDesign.iml" />
+       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
++      <module fileurl="file://$PROJECT_DIR$/dropbox-chooser/dropbox-chooser.iml" filepath="$PROJECT_DIR$/dropbox-chooser/dropbox-chooser.iml" />
+     </modules>
+   </component>
+ </project>
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision db8e28c17d6abaed3dac2e523fd79a38f638c8fd)
++++ app/build.gradle	(revision )
+@@ -17,7 +17,7 @@
+     buildToolsVersion "21.1.2"
+     defaultConfig {
+         applicationId "com.example.prabhendu.connectme"
+-        minSdkVersion 14
++        minSdkVersion 15
+         targetSdkVersion 21
+         versionCode 1
+         versionName "1.0"
+@@ -40,7 +40,7 @@
+     compile 'com.android.support:appcompat-v7:22.0.0'
+     compile files('libs/socialauth-4.4.jar')
+     compile files('libs/socialauth-android-3.2.jar')
+-    //compile files('libs/android-support-v4.jar')
++    compile project(':dropbox-chooser')
+     compile 'com.github.navasmdc:MaterialDesign:1.+@aar'
+     compile 'com.github.developerpaul123.filepickerlibrary:library:1.0@aar'
+ 
