@@ -12,27 +12,40 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
+import java.util.Map;
 
 
 public class SelfProfile extends ActionBarActivity {
+
+    DataStorage data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_self_profile);
+
+        data = new DataStorage();
+
         //Name text is  editText2
         //Phone text is editText3
         //Email text is editText4
         //Title text is editText5
         TextView name = (TextView) findViewById(R.id.editText2);
-        name.setHint("First Name");
+        try{
+            name.setText(data.getFirstName() + " " + data.getLastName());
+        } catch(NullPointerException e) {
+            name.setHint("First Name");
+        }
 
         TextView phone = (TextView) findViewById(R.id.editText3);
         phone.setHint("123-456-7890");
 
         TextView email = (TextView) findViewById(R.id.editText4);
-        email.setHint("example@email.com");
+        try {
+            email.setText(data.getEmail());
+        } catch(NullPointerException e) {
+            email.setHint("example@example.com");
+        }
 
         TextView title = (TextView) findViewById(R.id.editText5);
 
@@ -49,7 +62,7 @@ public class SelfProfile extends ActionBarActivity {
             }
         });
 
-        title.setHint("Title");
+        title.setHint("Undergrad");
 
         String[] resumeArray = {
                 "Resume_Software_Engineer",

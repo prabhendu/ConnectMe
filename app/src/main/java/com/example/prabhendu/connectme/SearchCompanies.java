@@ -49,7 +49,6 @@ public class SearchCompanies extends ActionBarActivity {
         header2 = (TextView) findViewById(R.id.textView2);
         editable = (EditText) findViewById(R.id.editName);
 
-        new HttpAsyncTask().execute("http://128.61.104.114:18081/api/companies");
         companiesArrayList = new ArrayList<String>();
         companiesArrayList.add("Loading companies");
 
@@ -137,6 +136,7 @@ public class SearchCompanies extends ActionBarActivity {
             //header2.setText(result);
             //editable.setText(result);
             json = result;
+            adapter.notifyDataSetChanged();
         }
 
     }

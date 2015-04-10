@@ -16,7 +16,7 @@ import org.brickred.socialauth.android.SocialAuthError;
 
 public class MainActivity extends ActionBarActivity {
 
-    SocialAuthAdapter adapter;
+    static SocialAuthAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,11 @@ public class MainActivity extends ActionBarActivity {
     private final class ResponseListener implements DialogListener {
         public void onComplete(Bundle values) {
             Log.i("Logged In", "logged in");
+            DataStorage data = new DataStorage();
+
+            data.setEmail(adapter.getUserProfile().getEmail());
+            data.setFirstName(adapter.getUserProfile().getFirstName());
+            data.setLastName(adapter.getUserProfile().getLastName());
 
             Intent loggedIn = new Intent(MainActivity.this, roledivider.class);
             startActivity(loggedIn);
@@ -57,6 +62,10 @@ public class MainActivity extends ActionBarActivity {
 //            Intent loggedIn = new Intent(MainActivity.this, roledivider.class);
 //            startActivity(loggedIn);
         }
+    }
+
+    public static SocialAuthAdapter getAdapter() {
+        return adapter;
     }
 
     @Override
