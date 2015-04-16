@@ -14,8 +14,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -39,6 +39,17 @@ public class roledivider extends ActionBarActivity {
         header = (TextView) findViewById(R.id.header);
 
         new HttpAsyncTask().execute("http://128.61.104.114:18081/api/users");
+        new HttpAsyncTask2().execute("http://128.61.104.114:18081/api/companies");
+        new HttpAsyncTask3().execute("http://128.61.104.114:18081/api/resumes");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        new HttpAsyncTask().execute("http://128.61.104.114:18081/api/users");
+        new HttpAsyncTask2().execute("http://128.61.104.114:18081/api/companies");
+        new HttpAsyncTask3().execute("http://128.61.104.114:18081/api/resumes");
     }
 
     public static String POST(String url) {
@@ -58,6 +69,29 @@ public class roledivider extends ActionBarActivity {
 
             post.setEntity(new UrlEncodedFormEntity(pairs));
             HttpResponse httpresponse = httpclient.execute(post);
+            inputStream = httpresponse.getEntity().getContent();
+
+            if(inputStream != null)
+                result = convertInputStreamToString(inputStream);
+            else
+                result = "DID NOT WORK";
+
+
+
+        } catch(Exception e) {
+            //
+        }
+
+        return result;
+    }
+
+    public static String GET(String url) {
+        InputStream inputStream = null;
+        String result = "";
+
+        try {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpResponse httpresponse = httpclient.execute(new HttpGet(url));
             inputStream = httpresponse.getEntity().getContent();
 
             if(inputStream != null)
@@ -105,6 +139,48 @@ public class roledivider extends ActionBarActivity {
 
     }
 
+    private class HttpAsyncTask2 extends AsyncTask<String, Void, String> { //for companies
+
+        @Override
+        protected String doInBackground(String... urls) {
+            Log.w("GETTING", "URL: " + urls[0]);
+            return GET(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.w("SERVER SENT: ", result);
+            Log.v("RESPONSE", result);
+
+            DataStorage data = new DataStorage();
+            data.setCompaniesJSON(result);
+
+        }
+
+    }
+
+    private class HttpAsyncTask3 extends AsyncTask<String, Void, String> { //for resumes
+
+        @Override
+        protected String doInBackground(String... urls) {
+            Log.w("PUTTING", "URL: " + urls[0]);
+            return GET(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.w("SERVER SENT: ", result);
+            Log.v("RESPONSE", result);
+            //header2.setText(result);
+            //editable.setText(result);
+
+            DataStorage data = new DataStorage();
+            data.setResumesJSON(result);
+
+        }
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -134,7 +210,7 @@ public class roledivider extends ActionBarActivity {
     }
 
     public void recruiterScreen (View view) {
-        Intent intent = new Intent(roledivider.this, RecruiterTagScreen.class);
+        Intent intent = new Intent(roledivider.this, RecruiterChooser.class);
         startActivity(intent);
     }
 }

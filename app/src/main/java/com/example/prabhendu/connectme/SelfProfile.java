@@ -130,16 +130,6 @@ public class SelfProfile extends ActionBarActivity {
             }
         });
 
-        /*String[] resumeArray = {
-                "Resume_Software_Engineer",
-                "Resume_Security_Analyst",
-                "Resume_IT_technical",
-        };
-
-        ListView lv = (ListView)findViewById(R.id.listView);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,resumeArray);
-        lv.setAdapter(adapter); */
-
 
     }
 

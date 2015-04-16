@@ -4,22 +4,22 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -31,18 +31,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FirstScreen extends ActionBarActivity {
+public class ThirdScreenRecruiter extends ActionBarActivity {
 
-    TextView resumeTagView;
+    String companyName;
+    TextView company_name;
+    ArrayAdapter<String> adapter;
+
+    TextView tagToAdd;
     AlertDialog alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.first_screen);
+        setContentView(R.layout.third_screen_recruiter);
+
+        tagToAdd = (TextView) findViewById(R.id.tagAdd);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Resume Submitted!")
+        builder.setMessage("Tag Added!")
                 .setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -53,41 +59,38 @@ public class FirstScreen extends ActionBarActivity {
 
         alert = builder.create();
 
+        DataStorage data = new DataStorage();
 
-        new HttpAsyncTask().execute("http://128.61.104.114:18081/api/users");
-        new HttpAsyncTask2().execute("http://128.61.104.114:18081/api/companies");
+        company_name = (TextView) findViewById(R.id.company_name);
 
-        resumeTagView = (TextView) findViewById(R.id.resumeTag);
-    }
+        companyName = getIntent().getExtras().getString("companyName");
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        new HttpAsyncTask().execute("http://128.61.104.114:18081/api/users");
-        new HttpAsyncTask2().execute("http://128.61.104.114:18081/api/companies");
-    }
+        if(!companyName.equals("") && companyName != null) {
 
-    public static String GET(String url) {
-        InputStream inputStream = null;
-        String result = "";
+            company_name.setText(companyName);
 
-        try {
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpResponse httpresponse = httpclient.execute(new HttpGet(url));
-            inputStream = httpresponse.getEntity().getContent();
-
-            if(inputStream != null)
-                result = convertInputStreamToString(inputStream);
-            else
-                result = "DID NOT WORK";
-
-
-
-        } catch(Exception e) {
-            //
         }
 
-        return result;
+        ArrayList<String> companyTags = new ArrayList<String>();
+        companyTags = data.getCompanyTags(companyName);
+
+        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, companyTags);
+        final ListView lv = (ListView) findViewById(R.id.companyTags);
+
+        lv.setAdapter(adapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object at = lv.getItemAtPosition(position);
+                String tagName = (String) at;
+
+                Intent intent = new Intent(ThirdScreenRecruiter.this, ThirdScreenRecruiterResumes.class);
+                intent.putExtra("tagName", tagName);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public String POST(String url) {
@@ -101,8 +104,7 @@ public class FirstScreen extends ActionBarActivity {
             HttpPost post = new HttpPost(url);
             List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 
-            pairs.add(new BasicNameValuePair("email", data.getEmail()));
-            pairs.add(new BasicNameValuePair("tag", resumeTagView.getText().toString()));
+            pairs.add(new BasicNameValuePair("tag", tagToAdd.getText().toString()));
 
             post.setEntity(new UrlEncodedFormEntity(pairs));
             HttpResponse httpresponse = httpclient.execute(post);
@@ -134,47 +136,6 @@ public class FirstScreen extends ActionBarActivity {
 
     }
 
-    private class HttpAsyncTask extends AsyncTask<String, Void, String> { //for users
-
-        @Override
-        protected String doInBackground(String... urls) {
-            Log.w("GETTING", "URL: " + urls[0]);
-            return GET(urls[0]);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            Log.w("SERVER SENT: ", result);
-            Log.v("RESPONSE", result);
-
-            DataStorage data = new DataStorage();
-            data.setJson(result);
-
-            Log.v("JSONSTR", "is now" + data.getJson());
-
-        }
-
-    }
-
-    private class HttpAsyncTask2 extends AsyncTask<String, Void, String> { //for companies
-
-        @Override
-        protected String doInBackground(String... urls) {
-            Log.w("GETTING", "URL: " + urls[0]);
-            return GET(urls[0]);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            Log.w("SERVER SENT: ", result);
-            Log.v("RESPONSE", result);
-
-            DataStorage data = new DataStorage();
-            data.setCompaniesJSON(result);
-
-        }
-
-    }
 
     private class HttpAsyncTask3 extends AsyncTask<String, Void, String> { //for resumes
 
@@ -195,11 +156,22 @@ public class FirstScreen extends ActionBarActivity {
 
     }
 
+    public void newTag(View view) {
+
+        DataStorage data = new DataStorage();
+
+        String url = "http://128.61.104.114:18081/api/companies/" + data.getCompanyID(companyName) + "/tags";
+        new HttpAsyncTask3().execute(url);
+
+        alert.show();
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_first_screen, menu);
+        getMenuInflater().inflate(R.menu.menu_third_screen, menu);
         return true;
     }
 
@@ -217,24 +189,4 @@ public class FirstScreen extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void resumeSubmit (View view) {
-
-        String url = "http://128.61.104.114:18081/api/resumes/";
-        new HttpAsyncTask3().execute(url);
-
-        alert.show();
-
-    }
-
-    public void selfProfile (View view) {
-        Intent intent = new Intent(this,SelfProfile.class);
-        startActivity(intent);
-    }
-
-    public void searchCompanies(View view) {
-        Intent intent = new Intent(this, SearchCompanies.class);
-        startActivity(intent);
-    }
-
 }

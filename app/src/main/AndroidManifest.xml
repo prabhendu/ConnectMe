@@ -30,7 +30,7 @@
                 android:value="com.example.prabhendu.connectme.roledivider" />
         </activity>
         <activity
-            android:name=".SecondScreen"
+            android:name=".ManageResumes"
             android:label="second_screen"
             android:parentActivityName=".FirstScreen" >
             <meta-data
@@ -38,9 +38,25 @@
                 android:value="com.example.prabhendu.connectme.FirstScreen" />
         </activity>
         <activity
+            android:name=".ThirdScreenRecruiter"
+            android:label="ConnectMe"
+            android:parentActivityName=".RecruiterChooser" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.prabhendu.connectme.roledivider" />
+        </activity>
+        <activity
+            android:name=".ThirdScreenRecruiterResumes"
+            android:label="ConnectMe"
+            android:parentActivityName=".ThirdScreenRecruiter" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.prabhendu.connectme.roledivider" />
+        </activity>
+        <activity
             android:name=".ThirdScreen"
             android:label="@string/title_activity_third_screen"
-            android:parentActivityName=".SecondScreen" >
+            android:parentActivityName=".SearchCompanies" >
         </activity>
         <activity
             android:name=".SelfProfile"
@@ -49,7 +65,7 @@
         </activity>
         <activity
             android:name=".SearchCompanies"
-            android:label="SearchCompanies"
+            android:label="ConnectMe"
             android:parentActivityName=".FirstScreen" >
         </activity>
         <activity
@@ -61,7 +77,7 @@
                 android:value="com.example.prabhendu.connectme.MainActivity" />
         </activity>
         <activity
-            android:name=".RecruiterTagScreen"
+            android:name=".RecruiterChooser"
             android:label="@string/title_activity_recruiter_first_screen"
             android:parentActivityName=".roledivider" >
             <meta-data
@@ -71,18 +87,18 @@
         <activity
             android:name=".RecruiterResumeScreen"
             android:label="@string/title_activity_recruiter_resume_screen"
-            android:parentActivityName=".RecruiterTagScreen" >
+            android:parentActivityName=".RecruiterChooser" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.prabhendu.connectme.RecruiterTagScreen" />
+                android:value=".RecruiterChooser" />
         </activity>
         <activity
             android:name=".TagCreationScreen"
             android:label="@string/title_activity_tag_creation_screen"
-            android:parentActivityName=".RecruiterTagScreen" >
+            android:parentActivityName=".RecruiterChooser" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.prabhendu.connectme.RecruiterTagScreen" />
+                android:value=".RecruiterChooser" />
         </activity>
 
         <activity

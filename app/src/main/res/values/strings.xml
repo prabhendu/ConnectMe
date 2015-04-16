@@ -4,18 +4,19 @@
     <string name="app_name">ConnectMe</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_first_screen">FirstScreen</string>
+    <string name="title_activity_first_screen">ConnectMe</string>
     <string name="login_name_text">Enter User Name</string>
     <string name="username">User Name</string>
     <string name="password">Password</string>
     <string name="submit_button">Submit</string>
     <string name="signUp_button">Sign Up</string>
-    <string name="title_activity_third_screen">third_screen</string>
+    <string name="title_activity_third_screen">ConnectMe</string>
     <string name="login_button">login_button</string>
-    <string name="title_activity_self_profile">SelfProfile</string>
-    <string name="title_activity_roledivider">roledivider</string>
-    <string name="title_activity_recruiter_first_screen">RecruiterFirstScreen</string>
-    <string name="title_activity_recruiter_resume_screen">RecruiterResumeScreen</string>
-    <string name="title_activity_tag_creation_screen">TagCreationScreen</string>
-    <string name="title_upload_new_resume_screen">UploadNewResume</string>
+    <string name="title_activity_self_profile">ConnectMe</string>
+    <string name="title_activity_roledivider">ConnectMe</string>
+    <string name="title_activity_recruiter_first_screen">ConnectMe</string>
+    <string name="title_activity_recruiter_resume_screen">ConnectMe</string>
+    <string name="title_activity_tag_creation_screen">ConnectMe</string>
+    <string name="title_search_companies_screen">ConnectMe</string>
+    <string name="title_upload_new_resume_screen">ConnectMe</string>
 </resources>

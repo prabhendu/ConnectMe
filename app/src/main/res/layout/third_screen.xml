@@ -6,7 +6,20 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.prabhendu.connectme.ThirdScreen">
 
-    <TextView android:text="RESUME SUBMITTED" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/company_name"
+        android:text="Company Name"
+        android:textSize="16dp" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/companyTags"
+        tools:listitem="@android:layout/simple_list_item_1"
+        android:layout_below="@+id/company_name"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

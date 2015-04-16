@@ -1,5 +1,6 @@
 package com.example.prabhendu.connectme;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -37,108 +39,84 @@ public class SearchCompanies extends ActionBarActivity {
 
     TextView header2;
     EditText editable;
-    String json;
     ArrayList<String> companiesArrayList;
     ArrayAdapter<String> adapter;
+    DataStorage data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_companies);
+        data = new DataStorage();
 
         header2 = (TextView) findViewById(R.id.textView2);
         editable = (EditText) findViewById(R.id.editName);
 
         companiesArrayList = new ArrayList<String>();
-        companiesArrayList.add("Loading companies");
+        try {
 
-        ListView lv = (ListView)findViewById(R.id.listView);
+            JSONArray jsonArray = new JSONArray(data.getCompaniesJSON());
+            this.companiesArrayList.clear();
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject obj = jsonArray.getJSONObject(i);
+
+                String companyName = obj.getString("name");
+
+                if(companyName.toUpperCase().contains(editable.getText().toString().toUpperCase())) {
+                    this.companiesArrayList.add(companyName);
+                }
+
+            }
+
+        } catch (JSONException e) {
+            //whoops
+        }
+
+
+        final ListView lv = (ListView)findViewById(R.id.listView);
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, this.companiesArrayList);
         lv.setAdapter(adapter);
 
-    }
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object at = lv.getItemAtPosition(position);
+                String companyName = (String) at;
 
-    public static String GET(String url) {
-        InputStream inputStream = null;
-        String result = "";
+                Intent intent = new Intent(SearchCompanies.this, ThirdScreen.class);
+                intent.putExtra("companyName", companyName);
+                startActivity(intent);
+            }
+        });
 
-        try {
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpResponse httpresponse = httpclient.execute(new HttpGet(url));
-            inputStream = httpresponse.getEntity().getContent();
-
-            if(inputStream != null)
-                result = convertInputStreamToString(inputStream);
-            else
-                result = "DID NOT WORK";
-
-
-
-        } catch(Exception e) {
-            //
-        }
-
-        return result;
     }
 
     public void refresh(View view) {
-        new HttpAsyncTask().execute("http://128.61.104.114:18081/api/companies");
 
-        if(json != null) {
-            Log.i("REFRESH", "REFRESH CALLED");
-            try {
+        data = new DataStorage();
 
-                JSONArray jsonArray = new JSONArray(json);
-                Log.i("ARRAY INFO", "Length: " + jsonArray.length());
-                this.companiesArrayList.clear();
+        try {
 
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject obj = jsonArray.getJSONObject(i);
+            JSONArray jsonArray = new JSONArray(data.getCompaniesJSON());
+            this.companiesArrayList.clear();
 
-                    String companyName = obj.getString("name");
-                    Log.i("COMPANY NAME: ", companyName);
-                   this.companiesArrayList.add(companyName);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject obj = jsonArray.getJSONObject(i);
 
+                String companyName = obj.getString("name");
+
+                if(companyName.toUpperCase().contains(editable.getText().toString().toUpperCase())) {
+                    this.companiesArrayList.add(companyName);
                 }
 
-            } catch (JSONException e) {
-                //whoops
             }
+
+        } catch (JSONException e) {
+            //whoops
         }
 
         adapter.notifyDataSetChanged();
-    }
-
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null)
-            result += line;
-
-        inputStream.close();
-        return result;
-
-    }
-
-    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... urls) {
-            Log.w("GETTING", "URL: " + urls[0]);
-            return GET(urls[0]);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            Log.w("SERVER SENT: ", result);
-            Log.v("RESPONSE", result);
-            //header2.setText(result);
-            //editable.setText(result);
-            json = result;
-            adapter.notifyDataSetChanged();
-        }
-
     }
 
     @Override

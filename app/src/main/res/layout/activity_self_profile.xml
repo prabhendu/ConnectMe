@@ -11,36 +11,6 @@
         android:layout_width="match_parent"
         android:background="#cac9c9">
 
-        <TextView
-            android:id="@+id/header1"
-            android:text="HOME"
-            android:layout_weight="1"
-            android:background="@drawable/rectangle"
-            android:textColor="#000000"
-            android:padding="15dip"
-            android:gravity="center"
-            android:clickable="true"
-            android:onClick="resumeSubmit"/>
-
-        <TextView
-            android:id="@+id/header2"
-            android:text="SEARCH"
-            android:layout_weight="1"
-            android:background="@drawable/rectangle"
-            android:textColor="#000000"
-            android:padding="15dip"
-            android:gravity="center"/>
-
-        <TextView
-            android:id="@+id/header3"
-            android:text="PROFILE"
-            android:layout_weight="1"
-            android:background="@drawable/rectangle"
-            android:textColor="#000000"
-            android:padding="15dip"
-            android:gravity="center"
-            android:onClick="selfProfile"/>
-
     </TableRow>
 
     <TextView
@@ -48,7 +18,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
-        android:text="My Profile"
+        android:text="Profile"
         android:id="@+id/textView3"
         android:layout_below="@+id/tableRow1"
         android:layout_alignParentLeft="true"
@@ -140,11 +110,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="Save Data"
         android:id="@+id/savebutton"
-        android:layout_marginBottom="22dp"
-        android:layout_above="@+id/manageresumes"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/lookingfor"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="#ff2aff28"
+        android:width="200dp"
+        android:clickable="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -168,11 +141,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Manage Resumes"
+        android:text="Manage My Resumes"
         android:id="@+id/manageresumes"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="26dp" />
+        android:layout_marginBottom="26dp"
+        android:background="#ff4689ff"
+        android:width="200dp" />
 
 
 </RelativeLayout>

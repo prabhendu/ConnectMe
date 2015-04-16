@@ -10,7 +10,7 @@
 
         <TextView
             android:id="@+id/header2"
-            android:text="SEARCH TAGS"
+            android:text="SEARCH COMPANIES"
             android:layout_weight="1"
             android:background="@drawable/rectangle"
             android:textColor="#000000"
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/resumeTag"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true" />
 

@@ -27,6 +27,12 @@ public class DataStorage {
     static String json;
     static ArrayList<JSONObject> users;
 
+    static String companiesJSON;
+    static ArrayList<JSONObject> companies;
+
+    static String resumesJSON;
+    static ArrayList<JSONObject> resumes;
+
     public void setID(String id) { this.id = id; }
 
     public void setEmail(String email) {
@@ -48,6 +54,10 @@ public class DataStorage {
     public void setLookingFor(String lookingFor) { this.lookingFor = lookingFor; }
 
     public void setJson(String json) { this.json = json;}
+
+    public void setCompaniesJSON(String companiesJSON) { this.companiesJSON = companiesJSON; }
+
+    public void setResumesJSON(String resumesJSON) { this.resumesJSON = resumesJSON; }
 
     //---
 
@@ -72,6 +82,10 @@ public class DataStorage {
     public String getLookingFor() { return this.lookingFor; }
 
     public String getJson() { return this.json; }
+
+    public String getCompaniesJSON() { return this.companiesJSON; }
+
+    public String getResumesJSON() { return this.resumesJSON; }
 
     public void buildArrayList() {
 
@@ -143,5 +157,109 @@ public class DataStorage {
         }
 
     }
+
+    public ArrayList<String> getCompanyTags(String companyName) {
+
+        ArrayList<String> temp = new ArrayList<String>();
+
+
+        try {
+
+            JSONArray jsonarr = new JSONArray(companiesJSON);
+
+            for(int i=0; i<jsonarr.length(); i++) {
+
+                JSONObject obj = jsonarr.getJSONObject(i);
+
+                if(obj.getString("name").equals(companyName)) {
+
+                    JSONArray tags = obj.getJSONArray("tags");
+
+                    for(int j=0; j<tags.length(); j++) {
+
+                        String tag = (String) tags.get(j);
+                        temp.add(tag);
+
+                    }
+
+                    break;
+
+                }
+
+
+            }
+
+
+        } catch (JSONException e) {
+            //whoopsie
+        }
+
+        return temp;
+
+
+    }
+
+    public ArrayList<String> getResumesForTag(String tag) {
+
+        ArrayList<String> temp = new ArrayList<String>();
+
+
+        try {
+
+            JSONArray jsonarr = new JSONArray(resumesJSON);
+
+            for(int i=0; i<jsonarr.length(); i++) {
+
+                JSONObject obj = jsonarr.getJSONObject(i);
+
+                if(obj.getString("tag").equals(tag)) {
+
+                    temp.add(obj.getString("email"));
+                }
+
+
+            }
+
+
+        } catch (JSONException e) {
+            //whoopsie
+        }
+
+        return temp;
+
+
+    }
+
+    public String getCompanyID(String companyName) {
+
+        ArrayList<String> temp = new ArrayList<String>();
+
+
+        try {
+
+            JSONArray jsonarr = new JSONArray(companiesJSON);
+
+            for(int i=0; i<jsonarr.length(); i++) {
+
+                JSONObject obj = jsonarr.getJSONObject(i);
+
+                if(obj.getString("name").equals(companyName)) {
+
+                    return obj.getString("_id");
+
+                }
+
+
+            }
+
+
+        } catch (JSONException e) {
+            //whoopsie
+        }
+
+        return "";
+
+    }
+
 
 }

@@ -5,7 +5,7 @@
     android:theme="@style/Dialog">
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="330dp"
         android:id="@+id/newResumeList"
         android:layout_below="@+id/textView8"
         android:layout_alignParentLeft="true"

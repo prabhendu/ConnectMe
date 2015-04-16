@@ -1,7 +1,7 @@
 package com.example.prabhendu.connectme;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class ThirdScreen extends ActionBarActivity {
+public class ThirdScreenRecruiterResumes extends ActionBarActivity {
 
-    String companyName;
+    String tagName;
     TextView company_name;
     ArrayAdapter<String> adapter;
 
@@ -26,18 +26,18 @@ public class ThirdScreen extends ActionBarActivity {
 
         company_name = (TextView) findViewById(R.id.company_name);
 
-        companyName = getIntent().getExtras().getString("companyName");
+        tagName = getIntent().getExtras().getString("tagName");
 
-        if(!companyName.equals("") && companyName != null) {
+        if(!tagName.equals("") && tagName != null) {
 
-            company_name.setText(companyName + " tags:");
+            company_name.setText("Emails of submitted resumes for " + tagName);
 
         }
 
-        ArrayList<String> companyTags = new ArrayList<String>();
-        companyTags = data.getCompanyTags(companyName);
+        ArrayList<String> resumes = new ArrayList<String>();
+        resumes = data.getResumesForTag(tagName);
 
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, companyTags);
+        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, resumes);
         ListView lv = (ListView) findViewById(R.id.companyTags);
 
         lv.setAdapter(adapter);

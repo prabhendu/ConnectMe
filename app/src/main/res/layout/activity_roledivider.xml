@@ -21,22 +21,26 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="  SEND DOCUMENTS   "
+        android:text="I&apos;m seeking a job"
         android:id="@+id/send"
         android:onClick="studentScreen"
+        android:layout_marginTop="86dp"
+        android:background="#ff45ff41"
+        android:width="200dp"
         android:layout_below="@+id/header"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="83dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RECEIVE DOCUMENTS"
+        android:text="I&apos;M HIRING"
         android:id="@+id/receive"
         android:onClick="recruiterScreen"
         android:layout_marginTop="80dp"
         android:layout_below="@+id/send"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:width="200dp"
+        android:background="#ff24b7ff" />
 
 
 </RelativeLayout>
