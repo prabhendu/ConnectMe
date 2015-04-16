@@ -60,9 +60,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Name      "
         android:id="@+id/textView4"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignBottom="@+id/editText2"
+        android:layout_toLeftOf="@+id/editText2"
+        android:layout_toStartOf="@+id/editText2" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -71,8 +71,8 @@
         android:ems="10"
         android:id="@+id/editText2"
         android:layout_below="@+id/textView3"
-        android:layout_toRightOf="@+id/textView4"
-        android:layout_toEndOf="@+id/textView4" />
+        android:layout_alignLeft="@+id/editText4"
+        android:layout_alignStart="@+id/editText4" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -80,9 +80,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Phone     "
         android:id="@+id/textView5"
-        android:layout_below="@+id/textView4"
+        android:layout_below="@+id/editText2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="21dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -90,9 +91,9 @@
         android:inputType="phone"
         android:ems="10"
         android:id="@+id/editText3"
-        android:layout_below="@+id/textView4"
-        android:layout_toRightOf="@+id/textView5"
-        android:layout_toEndOf="@+id/textView5" />
+        android:layout_above="@+id/editText4"
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -100,7 +101,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Email       "
         android:id="@+id/textView6"
-        android:layout_below="@+id/textView5"
+        android:layout_alignBottom="@+id/editText4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -120,9 +121,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Title         "
         android:id="@+id/textView7"
-        android:layout_below="@+id/textView6"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignBottom="@+id/editText5"
+        android:layout_toLeftOf="@+id/editText4"
+        android:layout_toStartOf="@+id/editText4" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -131,38 +132,47 @@
         android:text=""
         android:ems="10"
         android:id="@+id/editText5"
-        android:layout_below="@+id/textView6"
+        android:editable="true"
+        android:layout_below="@+id/editText4"
         android:layout_toRightOf="@+id/textView7"
         android:layout_toEndOf="@+id/textView7" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/savebutton"
+        android:layout_marginBottom="22dp"
+        android:layout_above="@+id/manageresumes"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold"
-        android:text="Resume(s):    "
-        android:id="@+id/textView8"
+        android:text="I&apos;m looking for a(n):"
+        android:id="@+id/textView9"
+        android:layout_marginTop="27dp"
         android:layout_below="@+id/editText5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
-    <ListView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:layout_below="@+id/textView8"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:choiceMode="singleChoice"/>
+        android:id="@+id/lookingfor"
+        android:editable="true"
+        android:width="250dp"
+        android:layout_below="@+id/textView9"
+        android:layout_centerHorizontal="true" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/newResumeButton"
-        android:layout_alignBaseline="@+id/textView8"
-        android:layout_alignParentRight="true"
-        android:onClick="uploadResumePopup"
-        android:text="Upload New Resume"
-        android:textColor="@color/material_blue_grey_800" />
+        android:text="Manage Resumes"
+        android:id="@+id/manageresumes"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp" />
 
 
 </RelativeLayout>
