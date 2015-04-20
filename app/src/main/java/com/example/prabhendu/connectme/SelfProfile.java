@@ -242,6 +242,10 @@ public class SelfProfile extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    public void manageResumes (View view) {
+        Intent intent = new Intent(this,ManageResumes.class);
+        startActivity(intent);
+    }
 
 
 }

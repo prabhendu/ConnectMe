@@ -59,10 +59,7 @@ public class UploadResumePopup extends ActionBarActivity {
         });
     }
 
-    public void uploadResumePopup (View view) {
-        Intent intent = new Intent(this,UploadResumePopup.class);
-        startActivity(intent);
-    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -119,4 +116,5 @@ public class UploadResumePopup extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

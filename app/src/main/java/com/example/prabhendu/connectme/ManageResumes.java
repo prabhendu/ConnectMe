@@ -26,7 +26,7 @@ public class ManageResumes extends ActionBarActivity {
                 "Resume_IT_technical",
         };
 
-        ListView lv = (ListView)findViewById(R.id.listView);
+        ListView lv = (ListView)findViewById(R.id.resumeListView);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,resumeArray);
         lv.setAdapter(adapter);
 
@@ -70,9 +70,8 @@ public class ManageResumes extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void selfProfile (View view) {
-        Intent intent = new Intent(this,SelfProfile.class);
+    public void uploadResumePopup (View view) {
+        Intent intent = new Intent(this,UploadResumePopup.class);
         startActivity(intent);
     }
 
