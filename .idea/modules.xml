@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ConnectMe.iml" filepath="$PROJECT_DIR$/ConnectMe.iml" />
       <module fileurl="file://$PROJECT_DIR$/MaterialDesign/MaterialDesign.iml" filepath="$PROJECT_DIR$/MaterialDesign/MaterialDesign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-upload-service/android-upload-service.iml" filepath="$PROJECT_DIR$/android-upload-service/android-upload-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-upload-service-master/android-upload-service-master.iml" filepath="$PROJECT_DIR$/android-upload-service-master/android-upload-service-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/dropbox-chooser/dropbox-chooser.iml" filepath="$PROJECT_DIR$/dropbox-chooser/dropbox-chooser.iml" />
     </modules>

@@ -1,1 +1,1 @@
-include ':app', ':MaterialDesign', ':dropbox-chooser'
+include ':app', ':MaterialDesign', ':dropbox-chooser', ':android-upload-service'

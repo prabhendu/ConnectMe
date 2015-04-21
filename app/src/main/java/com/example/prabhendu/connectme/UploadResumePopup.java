@@ -12,14 +12,34 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import java.util.UUID;
 import android.widget.TextView;
 import android.view.View;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.devpaul.filepickerlibrary.FilePickerActivity;
 import com.devpaul.filepickerlibrary.enums.FileScopeType;
 import com.devpaul.filepickerlibrary.enums.FileType;
 import com.devpaul.filepickerlibrary.enums.ThemeType;
 import com.dropbox.chooser.android.DbxChooser;
+import com.alexbbb.uploadservice.UploadService;
+import com.alexbbb.uploadservice.AbstractUploadServiceReceiver;
+import com.alexbbb.uploadservice.ContentType;
+import com.alexbbb.uploadservice.UploadRequest;
 
 /**
  * Created by pushpa on 4/5/15.
@@ -27,6 +47,8 @@ import com.dropbox.chooser.android.DbxChooser;
 public class UploadResumePopup extends ActionBarActivity {
 
     final int DBX_CHOOSER_REQUEST = 0;  // You can change this if needed
+    final String serverUrlString = "http://128.61.104.114:18081/api/users";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +62,7 @@ public class UploadResumePopup extends ActionBarActivity {
                 "Upload from SD Card",
                 "Upload using DropBox",
         };
+        UploadService.NAMESPACE = "com.example.prabhnedu.connectme";
 
         ListView lv = (ListView) findViewById(R.id.newResumeList);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, newResumeArray);
@@ -74,6 +97,30 @@ public class UploadResumePopup extends ActionBarActivity {
                         getStringExtra(FilePickerActivity.FILE_EXTRA_DATA_PATH);
                 if (filePath != null) {
                     Log.i("File Selected", filePath);
+                    final UploadRequest request = new UploadRequest(this, UUID.randomUUID().toString(), serverUrlString);
+                    request.addFileToUpload(filePath,
+                            "fieldname",
+                            "resume.pdf",
+                            "APPLICATION_PDF");
+
+                    request.setNotificationConfig(android.R.drawable.ic_menu_upload,
+                            "notification title",
+                            "upload in progress text",
+                            "upload completed successfully text",
+                            "upload error text",
+                            false);
+
+                    try {
+                        //Start upload service and display the notification
+                        UploadService.startUpload(request);
+
+                    } catch (Exception exc) {
+                        //You will end up here only if you pass an incomplete UploadRequest
+                        Log.e("AndroidUploadService", exc.getLocalizedMessage(), exc);
+                    }
+
+
+
                 }
             }
             super.onActivityResult(requestCode, resultCode, data);

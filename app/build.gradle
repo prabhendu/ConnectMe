@@ -43,5 +43,5 @@ dependencies {
     compile project(':dropbox-chooser')
     compile 'com.github.navasmdc:MaterialDesign:1.+@aar'
     compile 'com.github.developerpaul123.filepickerlibrary:library:1.0@aar'
-
+    compile project(':android-upload-service')
     }

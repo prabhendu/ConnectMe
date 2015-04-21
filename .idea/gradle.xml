@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/MaterialDesign" />
+            <option value="$PROJECT_DIR$/android-upload-service" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/dropbox-chooser" />
           </set>

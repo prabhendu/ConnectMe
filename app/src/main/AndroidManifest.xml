@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -110,6 +111,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.prabhendu.connectme.SelfProfile" />
         </activity>
+        <service
+            android:name="com.alexbbb.uploadservice.UploadService"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.example.prabhendu.connectme.uploadservice.action.upload"/>
+            </intent-filter>
+        </service>
 
     </application>
 
