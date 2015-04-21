@@ -99,7 +99,7 @@ public class UploadResumePopup extends ActionBarActivity {
                     Log.i("File Selected", filePath);
                     final UploadRequest request = new UploadRequest(this, UUID.randomUUID().toString(), serverUrlString);
                     request.addFileToUpload(filePath,
-                            "fieldname",
+                            "file",
                             "resume.pdf",
                             "APPLICATION_PDF");
 
