@@ -75,7 +75,7 @@ public class UploadResumePopup extends ActionBarActivity {
                     filePickerIntent.putExtra(FilePickerActivity.REQUEST_CODE, FilePickerActivity.REQUEST_FILE);
                     startActivityForResult(filePickerIntent, FilePickerActivity.REQUEST_FILE);
                 } else if (id == 1) {
-                    mChooser.forResultType(DbxChooser.ResultType.DIRECT_LINK)
+                    mChooser.forResultType(DbxChooser.ResultType.FILE_CONTENT)
                             .launch(UploadResumePopup.this, DBX_CHOOSER_REQUEST);
                 }
             }
@@ -129,9 +129,12 @@ public class UploadResumePopup extends ActionBarActivity {
       {
           if (resultCode == RESULT_OK) {
               DbxChooser.Result result = new DbxChooser.Result(data);
-              Log.d("main", "Link to selected file: " + result.getLink());
+              String filePath = result.getLink().toString();
 
-              // Handle the result ( This will be the actual file )
+              Log.d("main", "Link to selected file: " + filePath);
+
+
+              // Handle the result ( This will be link to the version caches by Dropbox app. )
           } else {
               // Failed or was cancelled by the user.
           }
