@@ -50,6 +50,7 @@ public class roledivider extends ActionBarActivity {
         new HttpAsyncTask().execute("http://128.61.104.114:18081/api/users");
         new HttpAsyncTask2().execute("http://128.61.104.114:18081/api/companies");
         new HttpAsyncTask3().execute("http://128.61.104.114:18081/api/resumes");
+        new HttpAsyncTask4().execute("http://128.61.104.114:18081/api/sent");
     }
 
     public static String POST(String url) {
@@ -176,6 +177,28 @@ public class roledivider extends ActionBarActivity {
 
             DataStorage data = new DataStorage();
             data.setResumesJSON(result);
+
+        }
+
+    }
+
+    private class HttpAsyncTask4 extends AsyncTask<String, Void, String> { //for sentResumes
+
+        @Override
+        protected String doInBackground(String... urls) {
+            Log.w("PUTTING", "URL: " + urls[0]);
+            return GET(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.w("SERVER SENT: ", result);
+            Log.v("RESPONSE", result);
+            //header2.setText(result);
+            //editable.setText(result);
+
+            DataStorage data = new DataStorage();
+            data.setSentJSON(result);
 
         }
 

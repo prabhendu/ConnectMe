@@ -24,14 +24,16 @@ public class DataStorage {
     static String title;
     static String lookingFor;
 
+    static String currentResumeFilename;
+
     static String json;
     static ArrayList<JSONObject> users;
 
     static String companiesJSON;
-    static ArrayList<JSONObject> companies;
 
     static String resumesJSON;
-    static ArrayList<JSONObject> resumes;
+
+    static String sentJSON;
 
     public void setID(String id) { this.id = id; }
 
@@ -53,11 +55,15 @@ public class DataStorage {
 
     public void setLookingFor(String lookingFor) { this.lookingFor = lookingFor; }
 
+    public void setCurrentResumeFilename(String name) { this.currentResumeFilename = name;}
+
     public void setJson(String json) { this.json = json;}
 
     public void setCompaniesJSON(String companiesJSON) { this.companiesJSON = companiesJSON; }
 
     public void setResumesJSON(String resumesJSON) { this.resumesJSON = resumesJSON; }
+
+    public void setSentJSON(String sentJSON) { this.sentJSON = sentJSON; }
 
     //---
 
@@ -80,6 +86,8 @@ public class DataStorage {
     public String getTitle() { return this.title; }
 
     public String getLookingFor() { return this.lookingFor; }
+
+    public String getCurrentResumeFilename() { return this.currentResumeFilename; }
 
     public String getJson() { return this.json; }
 
@@ -199,10 +207,9 @@ public class DataStorage {
 
     }
 
-    public ArrayList<String> getResumesForTag(String tag) {
+    public ArrayList<String> getResumesForEmail(String email) {
 
         ArrayList<String> temp = new ArrayList<String>();
-
 
         try {
 
@@ -212,9 +219,40 @@ public class DataStorage {
 
                 JSONObject obj = jsonarr.getJSONObject(i);
 
+                if(obj.getString("email").equals(email)) {
+
+                    temp.add(obj.getString("fileName"));
+
+                }
+
+            }
+
+
+        } catch(JSONException e) {
+            //oops
+        }
+
+        return temp;
+
+
+    }
+
+    public ArrayList<String> getResumesForTag(String tag) {
+
+        ArrayList<String> temp = new ArrayList<String>();
+
+
+        try {
+
+            JSONArray jsonarr = new JSONArray(sentJSON);
+
+            for(int i=0; i<jsonarr.length(); i++) {
+
+                JSONObject obj = jsonarr.getJSONObject(i);
+
                 if(obj.getString("tag").equals(tag)) {
 
-                    temp.add(obj.getString("email"));
+                    temp.add(obj.getString("fileName"));
                 }
 
 
@@ -255,6 +293,34 @@ public class DataStorage {
 
         } catch (JSONException e) {
             //whoopsie
+        }
+
+        return "";
+
+    }
+
+    public String getResumeID(String filename) {
+
+        ArrayList<String> temp = new ArrayList<String>();
+
+        try {
+
+            JSONArray jsonarr = new JSONArray(resumesJSON);
+
+            for(int i=0; i<jsonarr.length(); i++) {
+
+                JSONObject obj = jsonarr.getJSONObject(i);
+
+                if(obj.getString("fileName").equals(filename)) {
+
+                    return obj.getString("_id");
+
+                }
+
+            }
+
+        } catch(JSONException e) {
+            //oops
         }
 
         return "";

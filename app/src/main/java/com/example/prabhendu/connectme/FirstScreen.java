@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,11 +36,16 @@ public class FirstScreen extends ActionBarActivity {
 
     TextView resumeTagView;
     AlertDialog alert;
+    TextView resumeName;
+
+    DataStorage data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_screen);
+
+        data = new DataStorage();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Resume Submitted!")
@@ -53,6 +59,10 @@ public class FirstScreen extends ActionBarActivity {
 
         alert = builder.create();
 
+        resumeName = (TextView) findViewById(R.id.resumeName);
+
+        resumeName.setText(data.getCurrentResumeFilename());
+
 
         new HttpAsyncTask().execute("http://128.61.104.114:18081/api/users");
         new HttpAsyncTask2().execute("http://128.61.104.114:18081/api/companies");
@@ -65,6 +75,7 @@ public class FirstScreen extends ActionBarActivity {
         super.onResume();
         new HttpAsyncTask().execute("http://128.61.104.114:18081/api/users");
         new HttpAsyncTask2().execute("http://128.61.104.114:18081/api/companies");
+        resumeName.setText(data.getCurrentResumeFilename());
     }
 
     public static String GET(String url) {
@@ -101,7 +112,7 @@ public class FirstScreen extends ActionBarActivity {
             HttpPost post = new HttpPost(url);
             List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 
-            pairs.add(new BasicNameValuePair("email", data.getEmail()));
+            pairs.add(new BasicNameValuePair("fileName", data.getCurrentResumeFilename()));
             pairs.add(new BasicNameValuePair("tag", resumeTagView.getText().toString()));
 
             post.setEntity(new UrlEncodedFormEntity(pairs));
@@ -220,7 +231,7 @@ public class FirstScreen extends ActionBarActivity {
 
     public void resumeSubmit (View view) {
 
-        String url = "http://128.61.104.114:18081/api/resumes/";
+        String url = "http://128.61.104.114:18081/api/sent/";
         new HttpAsyncTask3().execute(url);
 
         alert.show();

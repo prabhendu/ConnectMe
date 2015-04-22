@@ -1,9 +1,14 @@
 package com.example.prabhendu.connectme;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,13 +21,14 @@ public class ThirdScreenRecruiterResumes extends ActionBarActivity {
     String tagName;
     TextView company_name;
     ArrayAdapter<String> adapter;
+    DataStorage data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.third_screen);
 
-        DataStorage data = new DataStorage();
+        data = new DataStorage();
 
         company_name = (TextView) findViewById(R.id.company_name);
 
@@ -30,7 +36,7 @@ public class ThirdScreenRecruiterResumes extends ActionBarActivity {
 
         if(!tagName.equals("") && tagName != null) {
 
-            company_name.setText("Emails of submitted resumes for " + tagName);
+            company_name.setText("Submitted resumes for: " + tagName);
 
         }
 
@@ -38,9 +44,21 @@ public class ThirdScreenRecruiterResumes extends ActionBarActivity {
         resumes = data.getResumesForTag(tagName);
 
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, resumes);
-        ListView lv = (ListView) findViewById(R.id.companyTags);
+        final ListView lv = (ListView) findViewById(R.id.companyTags);
 
         lv.setAdapter(adapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object at = lv.getItemAtPosition(position);
+                String resumeFileName = (String) at;
+
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://128.61.104.114:18081/api/resumes/" + data.getResumeID(resumeFileName)));
+                startActivity(browserIntent);
+
+            }
+        });
 
     }
 

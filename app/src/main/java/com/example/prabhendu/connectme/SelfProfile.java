@@ -130,7 +130,15 @@ public class SelfProfile extends ActionBarActivity {
             }
         });
 
+        new HttpAsyncTask3().execute("http://128.61.104.114:18081/api/resumes");
 
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        new HttpAsyncTask3().execute("http://128.61.104.114:18081/api/resumes");
     }
 
     public static String PUT(String url) {
@@ -153,6 +161,29 @@ public class SelfProfile extends ActionBarActivity {
 
             put.setEntity(new UrlEncodedFormEntity(pairs));
             HttpResponse httpresponse = httpclient.execute(put);
+            inputStream = httpresponse.getEntity().getContent();
+
+            if(inputStream != null)
+                result = convertInputStreamToString(inputStream);
+            else
+                result = "DID NOT WORK";
+
+
+
+        } catch(Exception e) {
+            //
+        }
+
+        return result;
+    }
+
+    public static String GET(String url) {
+        InputStream inputStream = null;
+        String result = "";
+
+        try {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpResponse httpresponse = httpclient.execute(new HttpGet(url));
             inputStream = httpresponse.getEntity().getContent();
 
             if(inputStream != null)
@@ -195,6 +226,28 @@ public class SelfProfile extends ActionBarActivity {
             Log.v("RESPONSE", result);
             //header2.setText(result);
             //editable.setText(result);
+
+        }
+
+    }
+
+    private class HttpAsyncTask3 extends AsyncTask<String, Void, String> { //for resumes
+
+        @Override
+        protected String doInBackground(String... urls) {
+            Log.w("PUTTING", "URL: " + urls[0]);
+            return GET(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.w("SERVER SENT: ", result);
+            Log.v("RESPONSE", result);
+            //header2.setText(result);
+            //editable.setText(result);
+
+            DataStorage data = new DataStorage();
+            data.setResumesJSON(result);
 
         }
 

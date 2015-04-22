@@ -1,6 +1,7 @@
 package com.example.prabhendu.connectme;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 public class ManageResumes extends ActionBarActivity {
 
@@ -20,21 +23,29 @@ public class ManageResumes extends ActionBarActivity {
         setContentView(R.layout.manage_resumes);
         TextView mText = (TextView) findViewById(R.id.editName);
 
-        String[] resumeArray = {
-                "Resume_Software_Engineer",
-                "Resume_Security_Analyst",
-                "Resume_IT_technical",
-        };
+        final DataStorage data = new DataStorage();
 
-        ListView lv = (ListView)findViewById(R.id.resumeListView);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,resumeArray);
+        final TextView currentRes = (TextView)findViewById(R.id.currentResume);
+        if(data.getCurrentResumeFilename() != null) {
+            currentRes.setText(data.getCurrentResumeFilename());
+        } else {
+            currentRes.setText("Select a file below");
+        }
+
+        ArrayList<String> resumes = data.getResumesForEmail(data.getEmail());
+
+        final ListView lv = (ListView)findViewById(R.id.resumeListView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, resumes);
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ManageResumes.this, ThirdScreen.class);
-                startActivity(intent);
+                Object at = lv.getItemAtPosition(position);
+                String resumeFileName = (String) at;
+
+                data.setCurrentResumeFilename(resumeFileName);
+                currentRes.setText(resumeFileName);
             }
         });
 
